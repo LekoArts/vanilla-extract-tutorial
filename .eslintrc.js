@@ -92,6 +92,10 @@ module.exports = {
         extensions: [`.js`, `.jsx`, `.tsx`],
       },
     ],
+    "react/function-component-definition": [
+      2,
+      { namedComponents: `arrow-function`, unnamedComponents: `arrow-function` },
+    ],
     "react-hooks/rules-of-hooks": `error`,
     "react-hooks/exhaustive-deps": `warn`,
     indent: [`error`, 2, { SwitchCase: 1 }],
