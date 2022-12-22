@@ -7,7 +7,6 @@ globalStyle(`*`, {
 
 globalStyle(`html, body`, {
   height: `100%`,
-  fontSize: `18px`,
 })
 
 globalStyle(`body`, {
