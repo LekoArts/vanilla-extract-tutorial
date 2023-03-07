@@ -3,6 +3,7 @@ import { darkThemeClass } from "../styles/dark.css"
 import { lightThemeClass } from "../styles/light.css"
 import { Stats, StatsItem } from "./stats"
 import { useColorScheme } from "../hooks/use-color-scheme"
+import * as styles from "./app.css"
 import "../styles/global.css"
 
 const App: React.FC = () => {
@@ -11,11 +12,15 @@ const App: React.FC = () => {
   const [variant, setVariant] = React.useState<"default" | "invert">(`default`)
 
   return (
-    <div className={schemeClass}>
-      <main>
-        <div>
+    <div className={[schemeClass, styles.wrapper].join(` `)}>
+      <main className={styles.innerWrapper}>
+        <div className={styles.topBar}>
           <div>Last 30 Days</div>
-          <button type="button" onClick={() => (variant === `default` ? setVariant(`invert`) : setVariant(`default`))}>
+          <button
+            type="button"
+            className={styles.button}
+            onClick={() => (variant === `default` ? setVariant(`invert`) : setVariant(`default`))}
+          >
             Toggle Variant
           </button>
         </div>
