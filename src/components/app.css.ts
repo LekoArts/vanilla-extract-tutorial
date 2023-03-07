@@ -1,4 +1,4 @@
-import { style } from "@vanilla-extract/css"
+import { style, styleVariants } from "@vanilla-extract/css"
 import { vars } from "../styles/themes.css"
 
 export const wrapper = style({
@@ -45,3 +45,26 @@ export const button = style({
     },
   },
 })
+
+const topBarHeadingBase = style({
+  fontSize: vars.fontSize.lg,
+  fontWeight: 700,
+})
+
+export const topBarHeading = styleVariants({
+  light: [topBarHeadingBase, { color: `black` }],
+  dark: [topBarHeadingBase, { color: `white` }],
+})
+
+const footerBase = style({
+  fontSize: vars.fontSize.sm,
+  textAlign: `center`,
+  marginTop: vars.space.xl,
+})
+
+const footerColors = {
+  light: vars.colors.gray600,
+  dark: vars.colors.gray400,
+}
+
+export const footer = styleVariants(footerColors, (color) => [footerBase, { color }])

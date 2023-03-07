@@ -16,7 +16,7 @@ const App: React.FC = () => {
     <div className={clsx(schemeClass, styles.wrapper)}>
       <main className={styles.innerWrapper}>
         <div className={styles.topBar}>
-          <div>Last 30 Days</div>
+          <div className={styles.topBarHeading[scheme]}>Last 30 Days</div>
           <button
             type="button"
             className={styles.button}
@@ -30,7 +30,9 @@ const App: React.FC = () => {
           <StatsItem label="Avg. Open Rate" from={56.14} to={58.16} percentage={2.02} />
           <StatsItem label="Avg. Click Rate" from={28.62} to={24.57} percentage={-4.05} />
         </Stats>
-        <div>Design by Tailwind UI. Built with vanilla-extract for educational purposes.</div>
+        <div className={styles.footer[scheme]}>
+          Design by Tailwind UI. Built with vanilla-extract for educational purposes.
+        </div>
       </main>
     </div>
   )
