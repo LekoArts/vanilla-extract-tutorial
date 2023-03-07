@@ -1,4 +1,5 @@
 import * as React from "react"
+import { clsx } from "clsx"
 import { darkThemeClass } from "../styles/dark.css"
 import { lightThemeClass } from "../styles/light.css"
 import { Stats, StatsItem } from "./stats"
@@ -12,7 +13,7 @@ const App: React.FC = () => {
   const [variant, setVariant] = React.useState<"default" | "invert">(`default`)
 
   return (
-    <div className={[schemeClass, styles.wrapper].join(` `)}>
+    <div className={clsx(schemeClass, styles.wrapper)}>
       <main className={styles.innerWrapper}>
         <div className={styles.topBar}>
           <div>Last 30 Days</div>
