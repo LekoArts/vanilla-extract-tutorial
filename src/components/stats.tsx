@@ -1,4 +1,7 @@
 import * as React from "react"
+import { clsx } from "clsx"
+import { sprinkles as s } from "../styles/sprinkles.css"
+import { wrapper, toValue, arrowUp, arrowDown } from "./stats.css"
 
 interface IStatsItemProps {
   label: string
@@ -20,14 +23,14 @@ export const Stats: React.FC<React.PropsWithChildren<IStatsProps>> = ({ children
 )
 
 export const Trend: React.FC<{ percentage: number }> = ({ percentage }) => {
-  const variant = React.useContext(StatsContext)
+  // const variant = React.useContext(StatsContext)
   const isPositive = Math.sign(percentage) === 1
-  const variantPostfix = isPositive ? `Up` : `Down`
+  // const variantPostfix = isPositive ? `Up` : `Down`
 
   return (
     <div>
-      <span />
-      <span>{Math.abs(percentage)}%</span>
+      <span className={isPositive ? arrowUp : arrowDown} />
+      <span className={s({ marginLeft: `xs` })}>{Math.abs(percentage)}%</span>
     </div>
   )
 }
@@ -36,14 +39,33 @@ export const StatsItem: React.FC<IStatsItemProps> = ({ label, from, to, percenta
   const variant = React.useContext(StatsContext)
 
   return (
-    <div>
-      <div>{label}</div>
-      <div>
-        <div>
-          <span>{to.toFixed(2)}%</span>
+    <div className={wrapper[variant]}>
+      <div className={s({ fontWeight: 600 })}>{label}</div>
+      <div
+        className={s({
+          display: `flex`,
+          alignItems: `center`,
+          justifyContent: `space-between`,
+          marginTop: `md`,
+        })}
+      >
+        <div className={s({ display: `flex`, alignItems: `baseline` })}>
+          <span
+            className={clsx(
+              s({
+                fontSize: `xl`,
+                fontWeight: 600,
+                marginRight: `sm`,
+                lineHeight: `xl`,
+              }),
+              toValue[variant]
+            )}
+          >
+            {to.toFixed(2)}%
+          </span>
           {` `}
           from{` `}
-          <span>{from.toFixed(2)}%</span>
+          <span className={s({ marginLeft: `sm`, fontWeight: 500 })}>{from.toFixed(2)}%</span>
         </div>
         <Trend percentage={percentage} />
       </div>
