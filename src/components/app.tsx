@@ -1,11 +1,13 @@
 import * as React from "react"
+import { darkThemeClass } from "../styles/dark.css"
+import { lightThemeClass } from "../styles/light.css"
 import { Stats, StatsItem } from "./stats"
 import { useColorScheme } from "../hooks/use-color-scheme"
 import "../styles/global.css"
 
 const App: React.FC = () => {
   const scheme = useColorScheme()
-  const schemeClass = scheme === `dark` ? `$darkThemeClass` : `$lightThemeClass`
+  const schemeClass = scheme === `dark` ? darkThemeClass : lightThemeClass
   const [variant, setVariant] = React.useState<"default" | "invert">(`default`)
 
   return (
