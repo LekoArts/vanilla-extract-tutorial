@@ -1,6 +1,7 @@
 import * as React from "react"
 import { Stats, StatsItem } from "./stats"
 import { useColorScheme } from "../hooks/use-color-scheme"
+import "../styles/global.css"
 
 const App: React.FC = () => {
   const scheme = useColorScheme()
