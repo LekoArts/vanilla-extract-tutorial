@@ -1,5 +1,6 @@
 import * as React from "react"
 import { clsx } from "clsx"
+import { stats, trend } from "../styles/recipes.css"
 import { sprinkles as s } from "../styles/sprinkles.css"
 import { wrapper, toValue, arrowUp, arrowDown } from "./stats.css"
 
@@ -18,17 +19,22 @@ const StatsContext = React.createContext<IStatsProps["variant"]>(`default`)
 
 export const Stats: React.FC<React.PropsWithChildren<IStatsProps>> = ({ children, variant = `default` }) => (
   <StatsContext.Provider value={variant}>
-    <section>{children}</section>
+    <section className={stats({ background: variant, color: variant })}>{children}</section>
   </StatsContext.Provider>
 )
 
 export const Trend: React.FC<{ percentage: number }> = ({ percentage }) => {
-  // const variant = React.useContext(StatsContext)
+  const variant = React.useContext(StatsContext)
   const isPositive = Math.sign(percentage) === 1
-  // const variantPostfix = isPositive ? `Up` : `Down`
+  const variantPostfix = isPositive ? `Up` : `Down`
 
   return (
-    <div>
+    <div
+      className={trend({
+        background: `${variant}${variantPostfix}`,
+        color: `${variant}${variantPostfix}`,
+      })}
+    >
       <span className={isPositive ? arrowUp : arrowDown} />
       <span className={s({ marginLeft: `xs` })}>{Math.abs(percentage)}%</span>
     </div>
